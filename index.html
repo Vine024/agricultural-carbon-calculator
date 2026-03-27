@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>农产品碳排放计算平台</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>农产品碳排放计算平台</h1>
+            <p class="subtitle">科学计算农业生产的碳足迹，助力绿色发展</p>
+        </header>
+
+        <div class="main-content">
+            <div class="calculator-section">
+                <h2>碳排放计算器</h2>
+                <form id="carbonForm">
+                    <div class="form-group">
+                        <label for="cropType">农产品类型</label>
+                        <select id="cropType" required>
+                            <option value="">请选择农产品</option>
+                            <option value="rice">水稻</option>
+                            <option value="wheat">小麦</option>
+                            <option value="corn">玉米</option>
+                            <option value="vegetables">蔬菜</option>
+                            <option value="fruits">水果</option>
+                            <option value="soybean">大豆</option>
+                            <option value="cotton">棉花</option>
+                            <option value="asparagus">芦笋</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="area">种植面积（亩）</label>
+                            <input type="number" id="area" min="0" step="0.1" placeholder="请输入面积" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="yield">产量（公斤）</label>
+                            <input type="number" id="yield" min="0" step="0.1" placeholder="请输入产量" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fertilizer">化肥使用量（公斤）</label>
+                            <input type="number" id="fertilizer" min="0" step="0.1" placeholder="请输入化肥用量">
+                        </div>
+                        <div class="form-group">
+                            <label for="pesticide">农药使用量（公斤）</label>
+                            <input type="number" id="pesticide" min="0" step="0.1" placeholder="请输入农药用量">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="irrigation">灌溉用水量（立方米）</label>
+                            <input type="number" id="irrigation" min="0" step="0.1" placeholder="请输入灌溉用水量">
+                        </div>
+                        <div class="form-group">
+                            <label for="machinery">机械作业时间（小时）</label>
+                            <input type="number" id="machinery" min="0" step="0.1" placeholder="请输入机械作业时间">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="region">种植区域</label>
+                        <select id="region">
+                            <option value="north">北方地区</option>
+                            <option value="south">南方地区</option>
+                            <option value="northwest">西北地区</option>
+                            <option value="northeast">东北地区</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="calculate-btn">计算碳排放</button>
+                </form>
+            </div>
+
+            <div class="results-section">
+                <h2>计算结果</h2>
+                <div id="results" class="results-container">
+                    <div class="placeholder">
+                        <p>请填写左侧表单并点击"计算碳排放"按钮</p>
+                        <p>系统将为您计算农产品的碳排放量</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>碳排放知识</h2>
+            <div class="info-cards">
+                <div class="info-card">
+                    <h3>什么是农业碳排放？</h3>
+                    <p>农业碳排放是指在农业生产过程中产生的温室气体排放，包括二氧化碳、甲烷和氧化亚氮等。主要来源包括化肥使用、农药施用、机械作业、灌溉等。</p>
+                </div>
+                <div class="info-card">
+                    <h3>如何减少农业碳排放？</h3>
+                    <p>通过科学施肥、推广有机农业、改进灌溉技术、使用清洁能源机械、种植固碳作物等方式，可以有效减少农业碳排放，实现绿色可持续发展。</p>
+                </div>
+                <div class="info-card">
+                    <h3>碳排放计算标准</h3>
+                    <p>本平台采用国际通用的IPCC（政府间气候变化专门委员会）计算方法学，结合中国农业生产实际情况，为用户提供准确的碳排放计算结果。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="calculator.js"></script>
+</body>
+</html>
