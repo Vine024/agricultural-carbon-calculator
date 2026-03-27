@@ -3,24 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>农产品碳排放计算平台</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>农产品碳排放计算器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        
+        .calculator {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-item {
+            flex: 1;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        select,
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        select:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .results {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        
+        .result-item {
+            background: #f9f9f9;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .result-item h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .result-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+        
+        .result-unit {
+            color: #777;
+            font-size: 14px;
+        }
+        
+        .result-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .detail-label {
+            color: #555;
+        }
+        
+        .detail-value {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+            }
+            
+            .result-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>农产品碳排放计算平台</h1>
-            <p class="subtitle">科学计算农业生产的碳足迹，助力绿色发展</p>
-        </header>
-
-        <div class="main-content">
-            <div class="calculator-section">
-                <h2>碳排放计算器</h2>
-                <form id="carbonForm">
-                    <div class="form-group">
-                        <label for="cropType">农产品类型</label>
-                        <select id="cropType" required>
-                            <option value="">请选择农产品</option>
+        <h1>农产品碳排放计算器</h1>
+        
+        <div class="calculator">
+            <form id="carbonForm">
+                <div class="form-row">
+                    <div class="form-item">
+                        <label for="cropType">作物类型</label>
+                        <select id="cropType">
                             <option value="rice">水稻</option>
                             <option value="wheat">小麦</option>
                             <option value="corn">玉米</option>
@@ -31,41 +175,7 @@
                             <option value="asparagus">芦笋</option>
                         </select>
                     </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="area">种植面积（亩）</label>
-                            <input type="number" id="area" min="0" step="0.1" placeholder="请输入面积" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="yield">产量（公斤）</label>
-                            <input type="number" id="yield" min="0" step="0.1" placeholder="请输入产量" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="fertilizer">化肥使用量（公斤）</label>
-                            <input type="number" id="fertilizer" min="0" step="0.1" placeholder="请输入化肥用量">
-                        </div>
-                        <div class="form-group">
-                            <label for="pesticide">农药使用量（公斤）</label>
-                            <input type="number" id="pesticide" min="0" step="0.1" placeholder="请输入农药用量">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="irrigation">灌溉用水量（立方米）</label>
-                            <input type="number" id="irrigation" min="0" step="0.1" placeholder="请输入灌溉用水量">
-                        </div>
-                        <div class="form-group">
-                            <label for="machinery">机械作业时间（小时）</label>
-                            <input type="number" id="machinery" min="0" step="0.1" placeholder="请输入机械作业时间">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
+                    <div class="form-item">
                         <label for="region">种植区域</label>
                         <select id="region">
                             <option value="north">北方地区</option>
@@ -74,41 +184,57 @@
                             <option value="northeast">东北地区</option>
                         </select>
                     </div>
-
-                    <button type="submit" class="calculate-btn">计算碳排放</button>
-                </form>
-            </div>
-
-            <div class="results-section">
-                <h2>计算结果</h2>
-                <div id="results" class="results-container">
-                    <div class="placeholder">
-                        <p>请填写左侧表单并点击"计算碳排放"按钮</p>
-                        <p>系统将为您计算农产品的碳排放量</p>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-item">
+                        <label for="area">种植面积（亩）</label>
+                        <input type="number" id="area" step="0.1" placeholder="请输入种植面积">
+                    </div>
+                    <div class="form-item">
+                        <label for="yield">总产量（公斤）</label>
+                        <input type="number" id="yield" step="1" placeholder="建议产量：500公斤/亩">
                     </div>
                 </div>
-            </div>
+                
+                <div class="form-row">
+                    <div class="form-item">
+                        <label for="fertilizer">化肥用量（公斤/亩）</label>
+                        <input type="number" id="fertilizer" step="0.1" placeholder="建议化肥用量：25.5公斤/亩">
+                    </div>
+                    <div class="form-item">
+                        <label for="pesticide">农药用量（公斤/亩）</label>
+                        <input type="number" id="pesticide" step="0.1" placeholder="建议农药用量：0.85公斤/亩">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-item">
+                        <label for="irrigation">灌溉用水（立方米/亩）</label>
+                        <input type="number" id="irrigation" step="1" placeholder="建议灌溉用水：350立方米/亩">
+                    </div>
+                    <div class="form-item">
+                        <label for="diesel">柴油用量（升/亩）</label>
+                        <input type="number" id="diesel" step="0.1" placeholder="建议柴油用量：15升/亩">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-item">
+                        <label for="plasticFilm">农膜用量（公斤/亩）</label>
+                        <input type="number" id="plasticFilm" step="0.1" placeholder="建议农膜用量：8公斤/亩">
+                    </div>
+                </div>
+                
+                <button type="submit">计算碳排放</button>
+            </form>
         </div>
-
-        <div class="info-section">
-            <h2>碳排放知识</h2>
-            <div class="info-cards">
-                <div class="info-card">
-                    <h3>什么是农业碳排放？</h3>
-                    <p>农业碳排放是指在农业生产过程中产生的温室气体排放，包括二氧化碳、甲烷和氧化亚氮等。主要来源包括化肥使用、农药施用、机械作业、灌溉等。</p>
-                </div>
-                <div class="info-card">
-                    <h3>如何减少农业碳排放？</h3>
-                    <p>通过科学施肥、推广有机农业、改进灌溉技术、使用清洁能源机械、种植固碳作物等方式，可以有效减少农业碳排放，实现绿色可持续发展。</p>
-                </div>
-                <div class="info-card">
-                    <h3>碳排放计算标准</h3>
-                    <p>本平台采用国际通用的IPCC（政府间气候变化专门委员会）计算方法学，结合中国农业生产实际情况，为用户提供准确的碳排放计算结果。</p>
-                </div>
-            </div>
+        
+        <div class="results" id="results">
+            <h2>计算结果将显示在这里</h2>
         </div>
     </div>
-
+    
     <script src="calculator.js"></script>
 </body>
 </html>
