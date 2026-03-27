@@ -123,27 +123,33 @@ function calculateCarbonEmission(formData) {
     let totalEmission = 0;
     let emissionBreakdown = {};
     
-    const fertilizerEmission = (formData.fertilizer || crop.fertilizerRate * formData.area) * carbonEmissionFactors.inputs.nitrogenFertilizer;
+    const fertilizerAmount = formData.fertilizer || crop.fertilizerRate;
+    const pesticideAmount = formData.pesticide || crop.pesticideRate;
+    const irrigationAmount = formData.irrigation || crop.irrigationRate;
+    const dieselAmount = formData.diesel || crop.dieselRate;
+    const plasticFilmAmount = formData.plasticFilm || crop.plasticFilmRate;
+    
+    const fertilizerEmission = fertilizerAmount * carbonEmissionFactors.inputs.nitrogenFertilizer * formData.area;
     emissionBreakdown.fertilizer = fertilizerEmission;
     totalEmission += fertilizerEmission;
     
-    const pesticideEmission = (formData.pesticide || crop.pesticideRate * formData.area) * carbonEmissionFactors.inputs.pesticide;
+    const pesticideEmission = pesticideAmount * carbonEmissionFactors.inputs.pesticide * formData.area;
     emissionBreakdown.pesticide = pesticideEmission;
     totalEmission += pesticideEmission;
     
-    const irrigationEmission = (formData.irrigation || crop.irrigationRate * formData.area) * region.electricityFactor;
+    const irrigationEmission = irrigationAmount * region.electricityFactor * formData.area;
     emissionBreakdown.irrigation = irrigationEmission;
     totalEmission += irrigationEmission;
     
-    const dieselEmission = (formData.diesel || crop.dieselRate * formData.area) * carbonEmissionFactors.inputs.diesel;
+    const dieselEmission = dieselAmount * carbonEmissionFactors.inputs.diesel * formData.area;
     emissionBreakdown.diesel = dieselEmission;
     totalEmission += dieselEmission;
     
-    const plasticFilmEmission = (formData.plasticFilm || crop.plasticFilmRate * formData.area) * carbonEmissionFactors.inputs.plasticFilm;
+    const plasticFilmEmission = plasticFilmAmount * carbonEmissionFactors.inputs.plasticFilm * formData.area;
     emissionBreakdown.plasticFilm = plasticFilmEmission;
     totalEmission += plasticFilmEmission;
     
-    const n2oEmission = (formData.fertilizer || crop.fertilizerRate * formData.area) * 0.01 * 298;
+    const n2oEmission = fertilizerAmount * 0.01 * 298 * formData.area;
     emissionBreakdown.n2o = n2oEmission;
     totalEmission += n2oEmission;
     
