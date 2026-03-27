@@ -77,10 +77,10 @@ const carbonEmissionFactors = {
         nitrogenFertilizer: 7.62,
         phosphateFertilizer: 1.63,
         potassiumFertilizer: 0.66,
-        pesticide: 18.5,
-        diesel: 3.18,
-        plasticFilm: 6.5,
-        electricity: 0.5703
+        pesticide: 16,
+        diesel: 3.17,
+        plasticFilm: 3.5,
+        electricity: 0.581
     },
     regions: {
         north: {
@@ -89,15 +89,15 @@ const carbonEmissionFactors = {
         },
         south: {
             name: '南方地区',
-            electricityFactor: 0.523
+            electricityFactor: 0.581
         },
         northwest: {
             name: '西北地区',
-            electricityFactor: 0.625
+            electricityFactor: 0.581
         },
         northeast: {
             name: '东北地区',
-            electricityFactor: 0.558
+            electricityFactor: 0.581
         }
     },
     standards: {
@@ -110,7 +110,7 @@ const carbonEmissionFactors = {
         calculationMethod: '《温室气体排放核算与报告要求 第23部分：种植业机构》'
     },
     dataSources: {
-        emissionFactors: '国家温室气体排放因子数据库（生态环境部，2026年第二版）',
+        emissionFactors: '《省级温室气体清单编制指南》（2025版）',
         officialDatabase: 'https://data.ncsc.org.cn/factories/index',
         standardDatabase: 'https://std.samr.gov.cn'
     }
