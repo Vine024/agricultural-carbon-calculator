@@ -97,6 +97,16 @@ const carbonEmissionFactors = {
             plasticFilmRate: 80,
             yieldPerMu: 2200,
             isFacility: true
+        },
+        asparagus: {
+            name: '芦笋',
+            fertilizerRate: 600,
+            pesticideRate: 5.0,
+            irrigationRate: 650,
+            dieselRate: 18,
+            plasticFilmRate: 100,
+            yieldPerMu: 800,
+            isFacility: true
         }
     },
     inputs: {
